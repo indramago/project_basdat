@@ -1,8 +1,8 @@
-from views import jenis_acc_view
 from views import acc_hp_view
+from views import jenis_acc_view
 from views import merk_acc_view
-from views import type_hp_view
 from views import transaction_view
+from views import type_hp_view
 
 
 class MenuView:

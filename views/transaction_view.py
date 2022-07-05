@@ -1,3 +1,5 @@
+from prettytable import PrettyTable
+
 from Models import transaction_model, acc_hp_model
 
 
@@ -11,7 +13,7 @@ class TransactionView:
             print("1. Insert")
             print("2. Show")
             print("3. Back")
-            match(int(input("Pilih menu: "))):
+            match (int(input("Pilih menu: "))):
                 case 1:
                     self._insert()
                 case 2:
@@ -22,7 +24,11 @@ class TransactionView:
                     print("Menu tidak tersedia")
 
     def _insert(self):
-        id_acc_hp = int(input("ID Acc Hp: "))
+        nama_acc_hp = input("Nama Acc HP: ")
+        id_acc_hp = self.search_acc_hp(nama_acc_hp)
+        if id_acc_hp is None:
+            print("Acc HP tidak ditemukan")
+            return
         jumlah = int(input("Jumlah: "))
         harga = int(input("Harga: "))
         total_harga = jumlah * harga
@@ -31,5 +37,15 @@ class TransactionView:
         self.transaction_model.reduce_stock(data)
 
     def _show(self):
+        x = PrettyTable()
+        x.field_names = ["Tanggal Transaksi", "Nama Acc", "Nama Jenis Acc", "Nama Merk Acc", "Nama Type HP", "Jumlah",
+                         "Harga", "Total Harga"]
         for data in self.transaction_model.get_data():
-            print("|{}.| {} | {} | {} | {} | {} | {} | {} | {} |".format(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]))
+            x.add_row(data)
+        print(x)
+
+    def search_acc_hp(self, nama_acc_hp):
+        for data in self.acc_hp_model.get_data():
+            if data[3] == nama_acc_hp:
+                return data[0]
+        return None

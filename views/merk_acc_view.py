@@ -1,18 +1,8 @@
-import mysql.connector
 from Models import merk_acc_model
-
-# Create mysql connection
-connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="si_penjualan"
-)
 
 
 class MerkAccView:
     def __init__(self):
-        self.connection = connection
         self.model = merk_acc_model.MerkAccModel()
         pass
 
@@ -23,7 +13,7 @@ class MerkAccView:
             print("3. Delete")
             print("4. Show")
             print("5. Back")
-            match(int(input("Pilih menu: "))):
+            match (int(input("Pilih menu: "))):
                 case 1:
                     self._insert()
                 case 2:
