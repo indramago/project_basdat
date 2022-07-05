@@ -4,7 +4,7 @@ import mysql.connector
 connection = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="",
+    passwd="crystal",
     database="si_penjualan"
 )
 
@@ -38,4 +38,3 @@ class TypeHpModel:
         query = "DELETE FROM type_hp WHERE ID_TYPE_HP={}".format(id)
         cursor.execute(query)
         self.connection.commit()
-

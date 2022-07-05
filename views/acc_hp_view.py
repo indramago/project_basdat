@@ -1,18 +1,8 @@
-import mysql.connector
 from Models import acc_hp_model
-
-# Create mysql connection
-connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="si_penjualan"
-)
 
 
 class AccHpView:
     def __init__(self):
-        self.connection = connection
         self.model = acc_hp_model.AccHpModel()
         pass
 
@@ -23,7 +13,7 @@ class AccHpView:
             print("3. Delete")
             print("4. Show")
             print("5. Back")
-            match(int(input("Pilih menu: "))):
+            match (int(input("Pilih menu: "))):
                 case 1:
                     self._insert()
                 case 2:
@@ -42,7 +32,7 @@ class AccHpView:
         id_type_hp = int(input("Id Type Hp: "))
         nama_acc = input("Nama Acc: ")
         stok_acc = int(input("Stok Acc: "))
-        data = (id_jenis_acc, id_type_hp, nama_acc,stok_acc)
+        data = (id_jenis_acc, id_type_hp, nama_acc, stok_acc)
         self.model.insert(data)
 
     def _update(self):

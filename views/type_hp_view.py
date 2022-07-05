@@ -1,18 +1,8 @@
-import mysql.connector
 from Models import type_hp_model
-
-# Create mysql connection
-connection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="si_penjualan"
-)
 
 
 class TypeHpView:
     def __init__(self):
-        self.connection = connection
         self.model = type_hp_model.TypeHpModel()
         pass
 
@@ -23,7 +13,7 @@ class TypeHpView:
             print("3. Delete")
             print("4. Show")
             print("5. Back")
-            match(int(input("Pilih menu: "))):
+            match (int(input("Pilih menu: "))):
                 case 1:
                     self._insert()
                 case 2:
@@ -54,4 +44,4 @@ class TypeHpView:
 
     def _show(self):
         for data in self.model.get_data():
-            print("|{}.| {} |".format(data[0], data[1],))
+            print("|{}.| {} |".format(data[0], data[1], ))
